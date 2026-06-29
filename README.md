@@ -1,7 +1,3 @@
-This is a polished, professional version of your **README.md**. I have reorganized the sections for better flow, improved the formatting, and added a "Key Features" section to highlight the platform's value proposition.
-
----
-
 # 🚀 INverge
 ### Trust-Based Startup–Investor Discovery Platform
 
