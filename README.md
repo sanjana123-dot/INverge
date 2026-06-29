@@ -1,248 +1,149 @@
-# INverge -- Trust-Based Startup--Investor Platform
+This is a polished, professional version of your **README.md**. I have reorganized the sections for better flow, improved the formatting, and added a "Key Features" section to highlight the platform's value proposition.
 
-```{=html}
-<p align="center">
-```
-`<img src="./docs/screenshots/dashboard.png" alt="INverge Dashboard" width="90%">`{=html}
-```{=html}
-</p>
-```
-```{=html}
-<p align="center">
-```
-![Next.js](https://img.shields.io/badge/Next.js-15-black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
-![Node.js](https://img.shields.io/badge/Node.js-Express-green)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Prisma-blue)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
+---
 
-```{=html}
-</p>
-```
-> **INverge** is a trust-first startup--investor networking platform
-> where founders and investors connect through credibility instead of
-> random networking.
+# 🚀 INverge
+### Trust-Based Startup–Investor Discovery Platform
 
-------------------------------------------------------------------------
+**INverge** redefines how founders and investors connect. Instead of cold outreach and "noise," INverge utilizes a proprietary **Trust Score** system, structured connection requests, and verified endorsements to ensure high-quality, meaningful professional relationships.
 
-# ✨ Features
+![INverge Dashboard](./docs/screenshots/dashboard.png)
+> *Note: Add your dashboard screenshots to `docs/screenshots/` after running the app locally.*
 
-## 👨‍💼 Founder Features
+---
 
--   Startup profile creation
--   Company profile management
--   Pitch deck PDF upload
--   Trust score dashboard
--   Receive investor requests
--   Secure real-time messaging
+## ✨ Key Features
 
-## 💰 Investor Features
+- **Trust-Based Discovery:** Algorithms prioritize users based on profile completeness and platform engagement.
+- **Role-Based Workflows:** Distinct interfaces and permissions for **Founders** and **Investors**.
+- **Structured Connections:** No random spam. Messaging is only unlocked after a connection request is accepted.
+- **Endorsement System:** Users can endorse each other post-connection to boost their Trust Scores.
+- **Pitch Deck Management:** Securely upload and share startup decks via Cloudinary.
+- **Real-time Interaction:** Instant messaging and notifications powered by Socket.IO.
 
--   Discover startups
--   Advanced search & filters
--   Send structured connection requests
--   View founder trust scores
--   Real-time notifications
+---
 
-## 🤝 Trust System
+## 🛠 Tech Stack
 
--   Dynamic Trust Score
--   Professional endorsements
--   Activity tracking
--   Response rate calculation
--   Profile completeness analysis
+| Layer | Technologies |
+|-------|-------------|
+| **Frontend** | Next.js 14 (App Router), TypeScript, Tailwind CSS, shadcn/ui, Zustand, Axios |
+| **Backend** | Node.js, Express, TypeScript, Socket.IO |
+| **Database** | PostgreSQL, Prisma ORM |
+| **Validation** | Zod |
+| **Storage** | Cloudinary (PDF Pitch Decks) |
+| **Security** | JWT (Access/Refresh), bcrypt, Helmet, CORS, Rate Limiting |
 
-## 💬 Communication
+---
 
--   Socket.IO chat
--   Instant notifications
--   Conversation history
--   Connection-based messaging
+## 📈 Trust Score Formula
 
-------------------------------------------------------------------------
+The platform calculates credibility using four key pillars:
 
-# 🏗 Architecture
+$$Score = (0.3 \times PC) + (0.2 \times RR) + (0.3 \times E) + (0.2 \times AC)$$
 
-``` text
-                 Next.js Frontend
-                        │
-                 REST API + JWT
-                        │
-                 Express Backend
-               ┌────────┴────────┐
-               │                 │
-           Socket.IO         Prisma ORM
-               │                 │
-        Real-time Chat      PostgreSQL
-```
+- **PC (Profile Completeness):** How much of the user's bio/data is filled.
+- **RR (Response Rate):** Speed and frequency of responding to connection requests.
+- **E (Endorsements):** Quality and quantity of endorsements from other users.
+- **AC (Activity Consistency):** Frequency of platform logins and updates.
 
-------------------------------------------------------------------------
+---
 
-# 🧠 Trust Score
+## 📂 Project Structure
 
-``` text
-score =
-0.30 × profileCompleteness +
-0.20 × responseRate +
-0.30 × endorsements +
-0.20 × activityConsistency
-```
-
-Updated whenever: - Profile changes - Connection accepted - Endorsement
-received - Login/activity updates
-
-------------------------------------------------------------------------
-
-# 🚀 User Flow
-
-``` text
-Signup
-  │
-Choose Role
-  │
-Create Profile
-  │
-Trust Score Generated
-  │
-Founder Creates Startup
-        OR
-Investor Discovers Startups
-  │
-Connection Request
-  │
-Accept
-  │
-Realtime Chat
-  │
-Endorsements
-```
-
-------------------------------------------------------------------------
-
-# 🛠 Tech Stack
-
-  Layer        Technologies
-  ------------ --------------------------------------------
-  Frontend     Next.js, TypeScript, Tailwind CSS, Zustand
-  Backend      Node.js, Express, JWT, Socket.IO
-  Database     PostgreSQL, Prisma ORM
-  Validation   Zod
-  Storage      Cloudinary
-  Security     Helmet, bcrypt, RBAC, Rate Limiting
-
-------------------------------------------------------------------------
-
-# 📂 Project Structure
-
-``` text
+```bash
 inVerge/
-├── backend/
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── routes/
-│   ├── services/
-│   ├── sockets/
-│   └── validations/
-├── frontend/
-│   ├── app/
-│   ├── components/
-│   ├── services/
-│   └── store/
-├── docs/
-│   └── screenshots/
-└── README.md
+├── backend/                # Express API (MVC Architecture)
+│   └── src/
+│       ├── services/       # Business logic (TrustScore, Auth, Messaging)
+│       ├── sockets/        # Real-time event handlers
+│       ├── middleware/     # RBAC and JWT validation
+│       └── validations/    # Zod schemas
+├── frontend/               # Next.js App Router
+│   ├── app/                # Pages and layouts
+│   ├── components/         # Shadcn/ui & custom components
+│   ├── services/           # API client layer
+│   └── store/              # Zustand state management
 ```
 
-------------------------------------------------------------------------
+---
 
-# ⚙️ Local Setup
+## ⚙️ Local Setup
 
-## Backend
+### Prerequisites
+- Node.js 18+ 
+- PostgreSQL (Local or hosted via [Neon.tech](https://neon.tech))
+- Cloudinary Account (for pitch deck storage)
 
-``` bash
+### 1. Database Setup
+1. Create a PostgreSQL database named `inverge`.
+2. Copy `backend/.env.example` to `backend/.env` and update your `DATABASE_URL`.
+
+### 2. Backend Installation
+```bash
 cd backend
 npm install
 npx prisma generate
 npx prisma db push
 npm run dev
 ```
+*API will be available at `http://localhost:5000`*
 
-## Frontend
-
-``` bash
+### 3. Frontend Installation
+```bash
 cd frontend
 npm install
 npm run dev
 ```
+*Application will be available at `http://localhost:3000`*
 
-------------------------------------------------------------------------
+---
 
-# 📡 API Endpoints
+## 🔑 Environment Variables
 
-  Method   Endpoint
-  -------- ---------------------------
-  POST     /api/auth/signup
-  POST     /api/auth/login
-  POST     /api/auth/refresh
-  GET      /api/users/me
-  GET      /api/startups/discover
-  POST     /api/requests
-  PATCH    /api/requests/:id/respond
-  POST     /api/endorsements
-  GET      /api/messages
-  GET      /api/notifications
-  GET      /api/trust-score
-  POST     /api/upload/pitch-deck
+### Backend (`/backend/.env`)
+```env
+PORT=5000
+DATABASE_URL="postgresql://user:pass@localhost:5432/inverge"
+JWT_ACCESS_SECRET="your_long_random_string_here"
+JWT_REFRESH_SECRET="another_long_random_string_here"
+CLOUDINARY_CLOUD_NAME="your_name"
+CLOUDINARY_API_KEY="your_key"
+CLOUDINARY_API_SECRET="your_secret"
+CLIENT_URL="http://localhost:3000"
+```
 
-------------------------------------------------------------------------
+### Frontend (`/frontend/.env.local`)
+```env
+NEXT_PUBLIC_API_URL="http://localhost:5000/api"
+NEXT_PUBLIC_SOCKET_URL="http://localhost:5000"
+```
 
-# 🔒 Security
+---
 
--   JWT Authentication
--   Refresh Token Rotation
--   bcrypt Password Hashing
--   Helmet
--   CORS
--   RBAC
--   Zod Validation
--   Rate Limiting
+## 📡 API Overview
 
-------------------------------------------------------------------------
+| Method | Endpoint | Description | Auth |
+|:-------|:---------|:------------|:-----|
+| `POST` | `/api/auth/signup` | Register a new user (Founder/Investor) | No |
+| `POST` | `/api/auth/login` | Login & receive JWT tokens | No |
+| `GET` | `/api/startups/discover` | Filter & search startups | Yes |
+| `POST` | `/api/requests` | Send a connection request | Yes |
+| `PATCH` | `/api/requests/:id` | Accept/Reject a connection | Yes |
+| `GET` | `/api/trust-score` | Get detailed score breakdown | Yes |
+| `POST` | `/api/upload/pitch-deck` | Upload PDF to Cloudinary | Yes (Founder) |
 
-# 🚀 Deployment
+---
 
-  Service    Platform
-  ---------- ------------------
-  Frontend   Vercel
-  Backend    Railway / Render
-  Database   Neon / Supabase
-  Storage    Cloudinary
+## 🛡 Security Measures
 
-------------------------------------------------------------------------
+- **Role-Based Access Control (RBAC):** Middleware ensures Investors cannot edit startup profiles and Founders cannot "invest" in themselves.
+- **JWT Rotation:** Short-lived access tokens with secure refresh token rotation stored in HttpOnly cookies.
+- **Input Sanitization:** Every request is validated against **Zod** schemas to prevent injection attacks.
+- **Rate Limiting:** Protects sensitive auth routes from brute-force attacks.
 
-# 🛣 Roadmap
+---
 
--   AI startup recommendations
--   AI investor matching
--   Startup valuation prediction
--   Video introductions
--   Mobile app
--   Email notifications
+## 📜 License
 
-------------------------------------------------------------------------
-
-# 👨‍💻 Author
-
-**Edupulapati Sai Praneeth**
-
-B.Tech CSE (AI & ML) --- VIT-AP University
-
-GitHub: https://github.com/SaiPraneeth-E
-
-------------------------------------------------------------------------
-
-# 📄 License
-
-MIT License
+This project is licensed under the **MIT License**. Feel free to use it for portfolio purposes or as a foundation for your own startup platform.
